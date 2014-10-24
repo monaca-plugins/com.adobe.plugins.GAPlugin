@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.adobe.plugins.GAPlugin"
+    version="2.1.1">
+
+    <name>GAPlugin</name>
+    
+	<description>
+		This plugin allows you to post usage information to your Google Analytics account.
+	</description>
+	
+	<license>MIT</license>
+    
+    <asset src="www/GAPlugin.js" target="GAPlugin.js" />
+    
+	<engines>
+      <engine name="cordova" version=">=2.0.0" />
+    </engines>	
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GAPlugin">
+              <param name="android-package" value="com.adobe.plugins.GAPlugin" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/GAPlugin.java"
+                target-dir="src/com/adobe/plugins" />
+        <source-file src="src/android/libGoogleAnalyticsV2.jar"
+                target-dir="libs" />
+    </platform>
+    
+    <!-- ios -->
+    <platform name="ios">
+        
+		<!-- Cordova >= 2.3 -->
+		<config-file target="config.xml" parent="plugins">
+            <feature name="GAPlugin">
+                <param name="ios-package" value="GAPlugin" />
+            </feature>
+		</config-file>  
+                    
+        <source-file src="src/ios/GAPlugin.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/GAIDictionaryBUilder.h" />
+        <source-file src="src/ios/GAITracker.h" />
+        <source-file src="src/ios/GAITrackedViewController.h" />
+        <source-file src="src/ios/GAILogger.h" />
+        <source-file src="src/ios/GAI.h" />
+        <source-file src="src/ios/GAIFields.h" />
+        <source-file src="src/ios/GAPlugin.h" />
+	<source-file src="src/ios/GAIEcommerceFields.h" />
+	<source-file src="src/ios/GAIEcommerceProduct.h" />
+	<source-file src="src/ios/GAIEcommerceProductAction.h" />
+	<source-file src="src/ios/GAIEcommercePromotion.h" />
+	<source-file src="src/ios/libGoogleAnalyticsServices.a" framework="true" monaca-custom="true" />
+
+<!--	<framework src="src/ios/libGoogleAnalyticsServices.a" /> -->
+        <framework src="CoreData.framework" />
+        <framework src="SystemConfiguration.framework" />
+	<framework src="libsqlite3.0.dylib" />
+	<framework src="libz.dylib" />
+    </platform>
+</plugin>
